@@ -28,11 +28,18 @@ FORMS    += mainwindow.ui \
     edititemdockwidget.ui \
     sceneviewdockwidget.ui
 
-INCLUDEPATH += C:\opencv248\build\install\include
+win32: INCLUDEPATH += C:\opencv248\build\install\include
+else:unix: INCLUDEPATH += /usr/local/include
 
-LIBS += C:\\opencv248\\build\\lib\\libopencv_core248.dll.a \
-    C:\\opencv248\\build\\lib\\libopencv_highgui248.dll.a \
-    C:\\opencv248\\build\\lib\\libopencv_imgproc248.dll.a \
-    C:\\opencv248\\build\\lib\\libopencv_photo248.dll.a
+win32: LIBS += C:\\opencv248\\build\\lib\\libopencv_core248.dll.a \
+                                                C:\\opencv248\\build\\lib\\libopencv_highgui248.dll.a \
+                                                C:\\opencv248\\build\\lib\\libopencv_imgproc248.dll.a \
+                                                C:\\opencv248\\build\\lib\\libopencv_photo248.dll.a
+
+else:unix:LIBS += -L/usr/local/lib \
+    -lopencv_core \
+    -lopencv_imgproc \
+    -lopencv_highgui \
+    -lopencv_photo \
 
 
